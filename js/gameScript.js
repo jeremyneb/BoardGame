@@ -1,8 +1,24 @@
+//Image array
+var images = [];
+function load() {
+  for (var i = 0; i < arguments.length; i++) {
+    images[i] = new Image();
+    images[i].src = load.arguments[i];
+  }
+}
+
+load(
+  "images/rect-temp.png",
+  "images/rect-temp-player.png",
+  "images/rect-temp-goal.png",
+  "images/rect-temp-enemy.png"
+)
+
 //Canvas
 var canvas = document.getElementById("gameBoard");
 var cx = canvas.getContext("2d");
 
-//Board size - Intended to be dynamic
+//Board size - Could be dynamic
 var boardWidth = 10;
 var boardHeight = 10;
 var cellSize = 64;
@@ -13,21 +29,6 @@ var playerCode = 1;
 var goalCode = 2;
 var enemyCode = 3;
 
-//Image array
-var images = [];
-function load() {
-    for (var i = 0; i < arguments.length; i++) {
-        images[i] = new Image();
-        images[i].src = load.arguments[i];
-    }
-}
-load(
-    "images/rect-temp.png",
-    "images/rect-temp-enemy.png",
-    "images/rect-temp-goal.png",
-    "images/rect-temp-player.png"
-)
-
 //Object vars
 var board;
 var player;
@@ -35,7 +36,7 @@ var enemy;
 var goal;
 
 //Setup board
-var board = new Array(boardWidth);
+board = new Array(boardWidth);
 for (var i = 0; i < boardWidth; i++) {
   board[i] = new Array(boardHeight);
 }
@@ -71,15 +72,21 @@ $(function() {
     for (var j = 0; j < boardHeight; j++) {
       if (board[i][j] == 0) {
         cx.drawImage(images[0], i*cellSize, j*cellSize);
+        console.log("Success! (0)");
       }
       else if (board[i][j] == 1) {
-        cx.drawImage(images[3], i*cellSize, j*cellSize);
+        cx.drawImage(images[1], i*cellSize, j*cellSize);
+        console.log("Success! (1)");
       }
       else if (board[i][j] == 2) {
         cx.drawImage(images[2], i*cellSize, j*cellSize);
+        console.log("Success! (2)");
       }
       else if (board[i][j] == 3) {
-        cx.drawImage(images[1], i*cellSize, j*cellSize);
+        cx.drawImage(images[3], i*cellSize, j*cellSize);
+        console.log("Success! (3)");
+      } else {
+        console.log("Error!");
       }
     }
   }
