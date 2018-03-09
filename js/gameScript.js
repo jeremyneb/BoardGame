@@ -157,6 +157,7 @@ function generateEnemies() {
     //Check if an empty tile, if not, try again until empty
     if (board[randX][randY] == 0) {
       board[randX][randY] = enemyTile;
+      
     } else {
       numEnemy--;
     }
